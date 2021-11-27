@@ -1,0 +1,129 @@
+{
+    "parser": "@typescript-eslint/parser",
+    "plugins": [
+        "@typescript-eslint",
+        "functional",
+        "react-hooks",
+        "import",
+        "simple-import-sort"
+    ],
+    "extends": [
+        "plugin:@typescript-eslint/recommended",
+        "plugin:react/recommended",
+        "plugin:functional/recommended",
+        "plugin:prettier/recommended"
+    ],
+    "parserOptions": {
+        "allowImportExportEverywhere": true,
+        "sourceType": "module",
+        "ecmaVersion": 2020,
+        "ecmaFeatures": {
+            "jsx": true,
+            "modules": true
+        }
+    },
+    "globals": {
+        "navigator": false
+    },
+    "rules": {
+        "camelcase": [
+            0,
+            {
+                "properties": "never",
+                "ignoreDestructuring": true
+            }
+        ],
+        "react-hooks/rules-of-hooks": "error",
+        "react-hooks/exhaustive-deps": "error",
+        "functional/prefer-readonly-type": 0,
+        "functional/prefer-type-literal": 0,
+        "functional/no-return-void": 0,
+        "functional/functional-parameters": 0,
+        "react/self-closing-comp": [
+            "error",
+            {
+                "component": true,
+                "html": true
+            }
+        ],
+        "react/jsx-no-target-blank": "error",
+        "react/jsx-no-bind": "error",
+        "react/react-in-jsx-scope": "off",
+        "@typescript-eslint/explicit-function-return-type": 0,
+        "@typescript-eslint/explicit-module-boundary-types": 0,
+        "functional/no-expression-statement": 0,
+        "@typescript-eslint/no-unused-vars": 2,
+        "react/no-unescaped-entities": 0,
+        "react/display-name": 0,
+        "import/no-default-export": 2,
+        "import/no-deprecated": 0,
+        "simple-import-sort/imports": [
+            "error",
+            {
+                "groups": [
+                    // Side effect imports.
+                    ["^\\u0000"],
+                    // React imports
+                    ["^react"],
+                    // Packages.
+                    // Things that start with a letter (or digit or underscore).
+                    ["^\\w"],
+                    // Packages.
+                    // Things that start with a letter (or digit or underscore), or `@` followed by a letter.
+                    ["^@?\\w"],
+                    // Absolute imports and other imports such as Vue-style `@/foo`.
+                    // Anything not matched in another group.
+                    ["^"],
+                    // Relative imports.
+                    // Anything that starts with a dot.
+                    ["^\\."]
+                ]
+            }
+        ],
+        "functional/immutable-data": [
+            2,
+            {
+                "ignoreImmediateMutation": true,
+                // Ignore immer syntax inside Redux slices.
+                "ignorePattern": "^draftState"
+            }
+        ],
+        "functional/no-conditional-statement": [
+            2,
+            {
+                "allowReturningBranches": "ifExhaustive"
+            }
+        ],
+        "functional/no-mixed-type": 0,
+        "@typescript-eslint/camelcase": 0,
+        "no-console": "error",
+        "prefer-arrow-callback": "error",
+        "no-nested-ternary": "error",
+        "arrow-body-style": [
+            "error",
+            "as-needed"
+        ],
+        "@typescript-eslint/no-non-null-assertion": 0,
+        "@typescript-eslint/no-explicit-any": "error",
+        "react/jsx-boolean-value": [
+            2,
+            "always"
+        ],
+        "react/jsx-newline": 2,
+        "no-restricted-imports": [2, {
+            "patterns": [".*"]
+        }]
+    },
+    "settings": {
+        "import/extensions": [
+            ".js",
+            ".jsx",
+            ".ts",
+            ".tsx"
+        ],
+        "react": {
+            "pragma": "React",
+            "version": "detect"
+        }
+    }
+}
