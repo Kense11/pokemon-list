@@ -1,4 +1,4 @@
-import pokeBallImage from "modules/PokemonList/assets/images/pokeBall.png";
+import pokeBallImage from "modules/PokemonList/assets/images/pokeball.png";
 
 import {
     forwardRef,
