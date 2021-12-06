@@ -1,14 +1,12 @@
 import { fetchPokemonListApi } from "modules/PokemonList/api/fetchPokemonListApi";
 import { fetchPokemonListAction } from "modules/PokemonList/store/pokemonListSlice";
-import { Epic } from "redux-observable";
 import { of } from "rxjs";
 import { catchError, filter, map, switchMap } from "rxjs/operators";
 import { createActionMatcher } from "shared/helpers/createActionMatcher";
 import { logError } from "shared/helpers/logError";
+import { Epic } from "store";
 
-import { Action } from "@reduxjs/toolkit";
-
-export const fetchPokemonListEpic: Epic<Action, Action> = (actions$) =>
+export const fetchPokemonListEpic: Epic = (actions$) =>
     actions$.pipe(
         filter(createActionMatcher([fetchPokemonListAction.request])),
         switchMap(() =>

@@ -1,14 +1,24 @@
 import { pokemonListEpic } from "modules/PokemonList/store/epics/pokemonListEpic";
-import { cryptoCurrencyRatesSlice } from "modules/PokemonList/store/pokemonListSlice";
-import { combineEpics, createEpicMiddleware } from "redux-observable";
+import { pokemonListSlice } from "modules/PokemonList/store/pokemonListSlice";
+import { combineEpics, createEpicMiddleware, Epic as GenericEpic } from "redux-observable";
 
-import { configureStore } from "@reduxjs/toolkit";
+import { Action, configureStore } from "@reduxjs/toolkit";
 
-const epicMiddleware = createEpicMiddleware();
+const reducer = {
+    [pokemonListSlice.name]: pokemonListSlice.reducer,
+};
+
+export type RootState = {
+    [Property in keyof typeof reducer]: ReturnType<typeof reducer[Property]>;
+};
+
+export type Epic = GenericEpic<Action, Action, RootState>;
+
+const epicMiddleware = createEpicMiddleware<Action, Action, RootState>();
 
 export const store = configureStore({
     reducer: {
-        [cryptoCurrencyRatesSlice.name]: cryptoCurrencyRatesSlice.reducer,
+        [pokemonListSlice.name]: pokemonListSlice.reducer,
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware({
@@ -17,5 +27,3 @@ export const store = configureStore({
 });
 
 epicMiddleware.run(combineEpics(pokemonListEpic));
-
-export type RootState = ReturnType<typeof store.getState>;

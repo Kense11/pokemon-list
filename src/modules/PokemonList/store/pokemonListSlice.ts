@@ -46,7 +46,7 @@ const selectId = ({ name }: Pokemon) => name;
 
 const pokemonListAdapter = createEntityAdapter<Pokemon>({ selectId });
 
-export const cryptoCurrencyRatesSlice = createSlice({
+export const pokemonListSlice = createSlice({
     name: sliceName,
     initialState: pokemonListAdapter.getInitialState(initialAdditionalFields),
     reducers: {},
